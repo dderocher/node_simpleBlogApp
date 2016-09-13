@@ -1,0 +1,32 @@
+
+<% include ./partials/header %>
+
+<div class="ui main text container segment">
+    <div class="ui huge header">Edit <%=blog.title%></div>
+    
+    <!--PUT does not work in html forms, so we use the method-override
+        package to fake it
+    -->
+    <form action="/blogs/<%= blog._id %>?_method=PUT" method="POST" class="ui form">
+        <div>
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="blog[title]" value="<%=blog.title%>">
+        </div>
+        <div>
+            <label for="image">Image:</label>
+            <input type="text" id="image" name="blog[image]" value="<%=blog.image%>">
+        </div>
+        <div>
+            <label for="body">Body:</label>
+            <!--<input type="text" id="body" name="blog[body]">-->
+            <textarea id="body" name="blog[body]"><%=blog.body%></textarea>
+        </div>
+        
+        <div class="ui inverted segment">
+            <input type="submit" class="ui big inverted grey button">
+        </div>
+    </form>
+
+</div>
+
+<% include ./partials/footer %>
